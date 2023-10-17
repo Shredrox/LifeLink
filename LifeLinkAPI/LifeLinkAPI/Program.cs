@@ -1,4 +1,7 @@
 
+using LifeLinkAPI.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace LifeLinkAPI
 {
     public class Program
@@ -7,12 +10,13 @@ namespace LifeLinkAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
+            // Add services to the container
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(
+                builder.Configuration.GetConnectionString("AppDbConnectionString")));
 
             var app = builder.Build();
 
@@ -25,8 +29,9 @@ namespace LifeLinkAPI
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
+            app.UseAuthorization();
 
             app.MapControllers();
 
