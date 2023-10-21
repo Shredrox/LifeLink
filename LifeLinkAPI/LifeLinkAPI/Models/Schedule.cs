@@ -6,5 +6,7 @@
         public string WorkHours { get; set; }
         public int DoctorId { get; set; }
         public Doctor Doctor { get; set; }
+        public int PrivateMedicalId { get; set; }
+        public PrivateMedical PrivateMedical { get; set; }
     }
 }
