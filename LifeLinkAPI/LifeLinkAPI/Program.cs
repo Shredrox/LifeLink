@@ -16,7 +16,7 @@ namespace LifeLinkAPI
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(
-                builder.Configuration.GetConnectionString("AppDbConnectionString")));
+                builder.Configuration.GetConnectionString("LifeLinkDb")));
 
             var app = builder.Build();
 
