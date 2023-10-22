@@ -1,5 +1,5 @@
-
 using LifeLinkAPI.Data;
+using LifeLinkAPI.Middlewares;
 using Microsoft.EntityFrameworkCore;
 
 namespace LifeLinkAPI
@@ -30,6 +30,8 @@ namespace LifeLinkAPI
             app.UseHttpsRedirection();
 
             app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseAuthorization();
 
