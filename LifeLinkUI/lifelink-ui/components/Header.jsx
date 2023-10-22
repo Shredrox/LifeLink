@@ -1,48 +1,52 @@
 import React from 'react'
-import Link from 'next/link';
+import Link from 'next/link'
 import { FiPhoneCall } from 'react-icons/fi'
 import { AiOutlineMail } from 'react-icons/ai'
 import { BsHeartPulse } from 'react-icons/bs'
+import Button from './Button'
 
 const Header = () => {
   return (
-    <header id="main-header" className='flex flex-col bg-[#12325B]'>
+    <header id="main-header" className='flex flex-col bg-primaryBlue text-white'>
         <section className='flex justify-between text-[14px]'>
             <section className='flex gap-4 px-[6.5rem]'>
-                <div className=''>
-                <FiPhoneCall className='inline' /> <span>+0885343008</span>
+                <div>
+                    <FiPhoneCall className='inline' /> <span>+0885343008</span>
                 </div>
                 <div>
-                    <AiOutlineMail className='inline' /> <span>lifelink@gmail.com</span>
+                    <AiOutlineMail className='inline' /> <span className='underline underline-offset-2'>lifelink@gmail.com</span>
                 </div>
             </section>
             <section>
                 <ul className='flex gap-4 px-[6.5rem]'>
-                    <li><Link href="/about">About</Link></li>
+                    <li><Link href="/about" className='hover:text-[#e6e8eb] active:text-[13px]'>About</Link></li>
                     <li>FAQ</li>
                     <li>Donate</li>
                     <li><span>EN</span> | <span>BG</span></li>
                 </ul>
             </section>
-      </section>
-     <nav id='main-nav' className='flex justify-between h-[48px]
-      items-center text-[1.05rem]'>
-        <div className="px-10 flex items-center gap-[0.5rem]">
-            <BsHeartPulse className='w-[25px] h-[25px]' /> <span className='text-[1.5rem]'>LifeLink</span>
-        </div>
-        <ul className='flex gap-5 items-center'>
-            <li>Home</li>
-            <li>Services</li>
-            <li>Medics</li>
-            <li>Hospitals</li>
-            <li>For Kids</li>
-            <li className='bg-gradient-to-r from-[#116BEB] to-[#0AA8EB] rounded-[35px] px-4 py-1'>Appointment</li>
-        </ul>
-        <div className='px-6'>
-            <button className='px-4'>Log In</button>
-            <button className='bg-white text-[#2E4493] rounded-[35px] px-4 py-1'>Sign Up</button>
-        </div>
-     </nav>
+        </section>
+        <nav id='main-nav' className='flex justify-between h-[48px]
+        items-center text-[1.05rem]'>
+            <div className="px-10">
+                <Link href='/' className='flex items-center gap-[0.5rem]' title='LifeLink'>
+                    <BsHeartPulse className='w-[25px] h-[25px]' /> <span className='text-[1.5rem]'>LifeLink</span>
+                </Link>
+            </div>
+            <ul className='flex gap-5 items-center w-[550px]'>
+                <li><Link href='/' className='hover:text-[#e6e8eb] active:text-[16px]'>Home</Link></li>
+                <li>Services</li>
+                <li>Medics</li>
+                <li>Hospitals</li>
+                <li>For Kids</li>
+                <li><Button content='Appointment' style='appointmentBtn' /></li>
+            </ul>
+            <div className='px-6 w-[230px]'>
+                <Link href='/login' className='px-4 hover:text-[#e6e8eb] active:text-[16px]'>Log In</Link>
+                <Button content='Sign Up' style='signUpBtn' path='/signup' />
+            </div>
+        </nav>
+        <div className='relative bottom-0 left-0 w-[58%] h-[1px] bg-white'></div>
     </header>
   )
 }
