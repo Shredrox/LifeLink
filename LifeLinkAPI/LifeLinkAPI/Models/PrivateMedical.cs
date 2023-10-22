@@ -16,5 +16,6 @@
         public List<Prescription> Prescriptions { get; set; }
         public List<Appointment> Appointments { get; set; }
         public List<Payment> Payments { get; set; }
+        public User User { get; set; }
     }
 }

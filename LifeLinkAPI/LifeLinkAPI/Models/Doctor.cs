@@ -18,5 +18,6 @@
         public Department Department { get; set; }
         public Schedule Schedule { get; set; }
         public List<Payment> Payments { get; set; }
+        public User User { get; set; }
     }
 }

@@ -16,5 +16,6 @@ namespace LifeLinkAPI.Models
         public Doctor? GP { get; set; }
         public MedicalRecord MedicalRecord { get; set; }
         public List<Payment>? Payments { get; set; }
+        public User User { get; set; }
     }
 }
