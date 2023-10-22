@@ -12,11 +12,9 @@ namespace LifeLinkAPI.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public required string PhoneNumber { get; set; }
-        public required string Gender { get; set; }
-        public required string Address { get; set; }
-        public int GPId { get; set; }
-        public Doctor GP { get; set; }
+        public int? GPId { get; set; }
+        public Doctor? GP { get; set; }
         public MedicalRecord MedicalRecord { get; set; }
-        public List<Payment> Payments { get; set; }
+        public List<Payment>? Payments { get; set; }
     }
 }
