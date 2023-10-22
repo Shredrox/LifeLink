@@ -21,7 +21,11 @@ namespace LifeLinkAPI.Data
         public DbSet<LabTest> LabTests { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Prescription> Prescriptions { get; set; }
+        public DbSet<HospitalStay> HospitalStays { get; set; }
         public DbSet<Medication> Medications { get; set; }
+        public DbSet<Treatment> Treatments { get; set; }
+        public DbSet<Illness> Illnesses { get; set; }
+        public DbSet<Diagnosis> Diagnoses { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
     }
