@@ -1,5 +1,7 @@
 using LifeLinkAPI.Data;
 using LifeLinkAPI.Middlewares;
+using LifeLinkAPI.Services;
+using LifeLinkAPI.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace LifeLinkAPI
@@ -17,6 +19,8 @@ namespace LifeLinkAPI
 
             builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(
                 builder.Configuration.GetConnectionString("LifeLinkDb")));
+
+            builder.Services.AddScoped<IPatientService, PatientService>();
 
             var app = builder.Build();
 
