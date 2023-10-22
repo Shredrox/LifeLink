@@ -2,26 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer components{
+  .appointmentBtn{
+    @apply bg-gradient-to-r from-[#116BEB] to-[#0AA8EB] rounded-[35px] hover:from-[#104b9e] hover:to-[#116BEB] px-4 py-1 hover:duration-[0.3s] hover:ease-in-out focus:outline-2 focus:outline-offset-2  focus:outline-blue-400 active:px-3 active:py-[0.2rem]
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  .signUpBtn{
+    @apply bg-white text-primaryBlue rounded-[35px] hover:text-[#116BEB] px-4 py-1 hover:duration-[0.3s] hover:ease-in-out focus:outline-2  focus:outline-offset-2  focus:outline-blue-400 active:px-3 active:py-[0.2rem]
+  }
 }
