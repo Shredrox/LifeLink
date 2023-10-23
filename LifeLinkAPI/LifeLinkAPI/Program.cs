@@ -20,7 +20,7 @@ namespace LifeLinkAPI
             builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(
                 builder.Configuration.GetConnectionString("LifeLinkDb")));
 
-            builder.Services.AddScoped<IPatientService, PatientService>();
+            builder.Services.AddScoped<IUserService, UserService>();
 
             var app = builder.Build();
 
