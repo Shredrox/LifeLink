@@ -34,16 +34,16 @@ const Header = () => {
                 </Link>
             </div>
             <ul className='flex gap-5 items-center w-[550px]'>
-                <li><Link href='/' className='hover:text-[#e6e8eb] active:text-[16px]'>Home</Link></li>
+                <li className='hover:text-[#e6e8eb] active:text-[16px] w-[47px]'><Link href='/'>Home</Link></li>
                 <li>Services</li>
                 <li>Medics</li>
                 <li>Hospitals</li>
                 <li>For Kids</li>
-                <li><Button content='Appointment' style='appointmentBtn' /></li>
+                <li><Button content='Appointment' style='appointmentBtn btnEffects' /></li>
             </ul>
             <div className='px-6 w-[230px]'>
-                <Link href='/login' className='px-4 hover:text-[#e6e8eb] active:text-[16px]'>Log In</Link>
-                <Button content='Sign Up' style='signUpBtn' path='/signup' />
+                <span className='px-4 hover:text-[#e6e8eb] active:text-[16px] w-[81px] inline-block'><Link href='/login'>Log In</Link></span>
+                <Button content='Sign Up' style='signUpBtn btnEffects' path='/signup' />
             </div>
         </nav>
         <div className='relative bottom-0 left-0 w-[58%] h-[1px] bg-white'></div>
