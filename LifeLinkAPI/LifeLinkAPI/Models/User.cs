@@ -12,6 +12,7 @@
     public enum Role
     {
         Admin,
+        HospitalAdmin,
         Patient,
         Doctor,
         PrivateMedical
