@@ -16,10 +16,12 @@ namespace LifeLinkAPI.Services
 
         public async Task RegisterPatient(UserDTO request)
         {
+            string passwordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(request.Password);
+
             var user = new User
             {
                 Username = request.Username,
-                Password = request.Password,
+                Password = passwordHash,
                 Email = request.Email,
                 Role = Role.Patient
             };
