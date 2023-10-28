@@ -16,6 +16,6 @@
   }
   .donateBtn{
     @apply py-3 px-9 text-[1.2rem] mb-7  bg-[#456FC7] rounded-[35px] hover:bg-[#5184ca] hover:ease-in-out 
-    focus:outline-2 focus:outline-offset-2  focus:outline-blue-400 active:px-8 active:py-[0.6rem]
+    hover:duration-[0.3s] focus:outline-2 focus:outline-offset-2  focus:outline-blue-400 active:px-8 active:py-[0.6rem]
   }
 }

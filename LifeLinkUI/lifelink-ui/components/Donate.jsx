@@ -15,7 +15,7 @@ const Donate = () => {
             Contribute a tax-deductible donation and join the forefront of transformative healthcare, 
             where connections and compassion are reshaping the field of medicine.
           </p>
-          <Button style='donateBtn' content='Donate' />
+          <Button style='donateBtn mb-14' content='Donate' />
         </div>
       </section>
     </section>
