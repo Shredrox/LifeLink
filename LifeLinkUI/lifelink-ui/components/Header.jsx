@@ -10,12 +10,12 @@ const Header = () => {
     <header id="main-header" className='flex flex-col bg-primaryBlue text-white'>
         <section className='flex justify-between text-[14px]'>
             <section className='flex gap-4 px-[6.5rem]'>
-                <div>
+                <span>
                     <FiPhoneCall className='inline' /> <span>+0885343008</span>
-                </div>
-                <div>
+                </span>
+                <span>
                     <AiOutlineMail className='inline' /> <span className='underline underline-offset-2'>lifelink@gmail.com</span>
-                </div>
+                </span>
             </section>
             <section>
                 <ul className='flex gap-4 px-[6.5rem]'>
@@ -30,7 +30,7 @@ const Header = () => {
         items-center text-[1.05rem]'>
             <div className="px-10">
                 <Link href='/' className='flex items-center gap-[0.5rem]' title='LifeLink'>
-                    <BsHeartPulse className='w-[25px] h-[25px]' /> <span className='text-[1.5rem]'>LifeLink</span>
+                    <BsHeartPulse size={25} /> <span className='text-[1.5rem]'>LifeLink</span>
                 </Link>
             </div>
             <ul className='flex gap-5 items-center w-[550px]'>
