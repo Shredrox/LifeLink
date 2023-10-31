@@ -45,6 +45,30 @@ namespace LifeLinkAPI.Services
             await _context.SaveChangesAsync();
         }
 
+        public User? GetUser(UserDTO request)
+        {
+            var user = _context.Users.FirstOrDefault(user => user.Username == request.Username || user.Email == request.Email);
+
+            if(user == null)
+            {
+                return null;
+            }
+
+            var correctPassword = BCrypt.Net.BCrypt.EnhancedVerify(request.Password, user.Password);
+
+            if (!correctPassword)
+            {
+                return null;
+            }
+
+            return user;
+        }
+
+        public List<User> GetAllUsers()
+        {
+            return _context.Users.ToList();
+        }
+
         public Task CreateAdmin(User request)
         {
             throw new NotImplementedException();
