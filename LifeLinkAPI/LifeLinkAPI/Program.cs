@@ -25,6 +25,7 @@ namespace LifeLinkAPI
 
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<IMedicalDataService, MedicalDataService>();
 
             builder.Services.AddAuthentication(options =>
             {
