@@ -42,6 +42,17 @@ namespace LifeLinkAPI
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true
                 };
+                jwt.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = context =>
+                    {
+                        context.Token = context.Request.Cookies["token"];
+                        return Task.CompletedTask;
+                    }
+                };
+            }).AddCookie(cookie =>
+            {
+                cookie.Cookie.Name = "token";
             });
 
             var app = builder.Build();

@@ -49,6 +49,13 @@ namespace LifeLinkAPI.Controllers
             }
 
             string token = _authService.CreateToken(user);
+            Response.Cookies.Append("token", token, new CookieOptions
+            {
+                Expires = DateTime.Now.AddHours(1),
+                HttpOnly = true,
+                Secure = true,
+                IsEssential = true
+            });
 
             return Ok(token);
         }
