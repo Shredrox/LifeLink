@@ -18,9 +18,10 @@ namespace LifeLinkAPI.Services
 
         public string CreateToken(User user)
         {
-            List<Claim> claims = new List<Claim>()
+            List<Claim> claims = new()
             {
-                new Claim(ClaimTypes.Name, user.Username)
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Role, user.Role.ToString())
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
