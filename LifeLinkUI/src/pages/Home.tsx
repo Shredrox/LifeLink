@@ -1,11 +1,11 @@
-import Donate from '@components/Donate'
+import Donate from "../components/Donate"
 
 const Home = () => {
   return (
-    <main>
+    <div>
       Home
       <Donate />
-    </main>
+    </div>
   )
 }
 
