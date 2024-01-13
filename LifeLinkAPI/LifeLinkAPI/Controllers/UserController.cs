@@ -1,5 +1,4 @@
-﻿using LifeLinkAPI.Models.DTOs;
-using LifeLinkAPI.Services.Interfaces;
+﻿using LifeLinkAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LifeLinkAPI.Controllers
@@ -9,55 +8,24 @@ namespace LifeLinkAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly IAuthService _authService;
-
+        
         public UserController(
-            IUserService userService,
-            IAuthService authService)
+            IUserService userService)
         {
             _userService = userService;
-            _authService = authService;
         }
 
-        [HttpPost("Register")]
-        public async Task<IActionResult> Register(UserDTO request)
+        [HttpGet("{username}")]
+        public ActionResult GetUserByName(string username)
         {
-            if (!ModelState.IsValid)
+            var user = _userService.GetUserByName(username);
+
+            if (user is null)
             {
-                return BadRequest();
+                return NotFound(); 
             }
 
-            await _userService.RegisterPatient(request);
-
-            return CreatedAtAction("Register", "Patient Registered");
-        }
-
-        [HttpPost("Login")]
-        public ActionResult Login(UserDTO request)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-
-            //check user
-            var user = _userService.GetUser(request);
-
-            if(user is null)
-            {
-                return BadRequest();
-            }
-
-            string token = _authService.CreateToken(user);
-            Response.Cookies.Append("token", token, new CookieOptions
-            {
-                Expires = DateTime.Now.AddHours(1),
-                HttpOnly = true,
-                Secure = true,
-                IsEssential = true
-            });
-
-            return Ok(token);
+            return Ok(user);
         }
 
         [HttpGet("GetAllUsers")]
