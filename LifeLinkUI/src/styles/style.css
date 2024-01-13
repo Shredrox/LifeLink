@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+  .btnEffects{
+    @apply px-4 py-1 hover:duration-[0.3s] hover:ease-in-out focus:outline-2 focus:outline-offset-2 
+     focus:outline-blue-400 active:px-3 active:py-[0.2rem]
+  }
+  .appointmentBtn{
+    @apply bg-gradient-to-r from-[#116BEB] to-[#0AA8EB] rounded-[35px] hover:from-[#5290e7]
+     hover:to-[#116beb] 
+  }
+  .signUpBtn{
+    @apply bg-white text-primaryBlue rounded-[35px] hover:text-[#116BEB]
+  }
+  .donateBtn{
+    @apply py-3 px-9 text-[1.2rem] mb-7  bg-[#456FC7] rounded-[35px] hover:bg-[#5184ca] hover:ease-in-out 
+    hover:duration-[0.3s] focus:outline-2 focus:outline-offset-2  focus:outline-blue-400 active:px-8 active:py-[0.6rem]
+  }
+}
