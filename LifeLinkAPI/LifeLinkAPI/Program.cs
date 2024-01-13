@@ -1,5 +1,4 @@
 using LifeLinkAPI.Data;
-using LifeLinkAPI.Middlewares;
 using LifeLinkAPI.Services;
 using LifeLinkAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -14,6 +13,21 @@ namespace LifeLinkAPI
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddCors(options =>
+                  options.AddPolicy("AllowOrigin", policy =>
+                  {
+                      policy.WithOrigins(
+                                "http://127.0.0.1:5173",
+                                "http://127.0.0.1:5173/",
+                                "http://localhost:5173",
+                                "http://localhost:5173/",
+                                "http://localhost")
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials();
+                  })
+                );
 
             // Add services to the container
             builder.Services.AddControllers();
@@ -34,6 +48,8 @@ namespace LifeLinkAPI
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(jwt =>
             {
+                jwt.SaveToken = true;
+                jwt.RequireHttpsMetadata = false;
                 jwt.TokenValidationParameters = new TokenValidationParameters
                 {
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is the best token ever aaaaaaahertjetjaetja")),
@@ -42,18 +58,22 @@ namespace LifeLinkAPI
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true
                 };
+
                 jwt.Events = new JwtBearerEvents
                 {
                     OnMessageReceived = context =>
                     {
-                        context.Token = context.Request.Cookies["token"];
+                        if (context.Request.Cookies.ContainsKey("AccessToken"))
+                        {
+                            context.Token = context.Request.Cookies["AccessToken"];
+                        }
+
                         return Task.CompletedTask;
                     }
                 };
-            }).AddCookie(cookie =>
-            {
-                cookie.Cookie.Name = "token";
             });
+
+            builder.Services.AddAuthorization();
 
             var app = builder.Build();
 
@@ -66,9 +86,7 @@ namespace LifeLinkAPI
 
             app.UseHttpsRedirection();
 
-            app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-
-            app.UseMiddleware<ErrorHandlingMiddleware>();
+            app.UseCors("AllowOrigin");
 
             app.UseAuthentication();
 
