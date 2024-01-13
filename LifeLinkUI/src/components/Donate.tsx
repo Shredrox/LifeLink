@@ -1,13 +1,12 @@
-import React from 'react'
-import Image from 'next/image'
 import Button from './Button'
+import DonateLogo from '../assets/images/donate.png'
 
 const Donate = () => {
   return (
     <section className='bg-primaryBlue text-white h-[270px] flex items-center justify-center'>
       <section className='flex justify-center gap-[6rem] mb-3'>
         <div className='flex items-center'>
-          <Image src='/assets/images/donate.png' alt='Donate Logo' width={200} height={95} />
+          <img src={DonateLogo} alt='Donate Logo' width={200} height={95} />
           <p className='text-[2.1rem] font-bold w-[330px] text-center'>Your gift holds great power – donate today!</p>
         </div>
         <div className='flex items-center w-[560px] mb-4'>

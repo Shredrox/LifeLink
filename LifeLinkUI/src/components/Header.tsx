@@ -1,5 +1,4 @@
-import React from 'react'
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 import { FiPhoneCall } from 'react-icons/fi'
 import { AiOutlineMail } from 'react-icons/ai'
 import { BsHeartPulse } from 'react-icons/bs'
@@ -19,7 +18,7 @@ const Header = () => {
             </section>
             <section>
                 <ul className='flex gap-4 px-[6.5rem]'>
-                    <li><Link href="/about" className='hover:text-[#e6e8eb] active:text-[13px]'>About</Link></li>
+                    <li><Link to="/about" className='hover:text-[#e6e8eb] active:text-[13px]'>About</Link></li>
                     <li>FAQ</li>
                     <li>Donate</li>
                     <li><span>EN</span> | <span>BG</span></li>
@@ -29,12 +28,12 @@ const Header = () => {
         <nav id='main-nav' className='flex justify-between h-[48px]
         items-center text-[1.05rem]'>
             <div className="px-10">
-                <Link href='/' className='flex items-center gap-[0.5rem]' title='LifeLink'>
+                <Link to='/' className='flex items-center gap-[0.5rem]' title='LifeLink'>
                     <BsHeartPulse size={25} /> <span className='text-[1.5rem]'>LifeLink</span>
                 </Link>
             </div>
             <ul className='flex gap-5 items-center w-[550px]'>
-                <li className='hover:text-[#e6e8eb] active:text-[16px] w-[47px]'><Link href='/'>Home</Link></li>
+                <li className='hover:text-[#e6e8eb] active:text-[16px] w-[47px]'><Link to='/'>Home</Link></li>
                 <li>Services</li>
                 <li>Medics</li>
                 <li>Hospitals</li>
@@ -42,7 +41,7 @@ const Header = () => {
                 <li><Button content='Appointment' style='appointmentBtn btnEffects' /></li>
             </ul>
             <div className='px-6 w-[230px]'>
-                <span className='px-4 hover:text-[#e6e8eb] active:text-[16px] w-[81px] inline-block'><Link href='/login'>Log In</Link></span>
+                <span className='px-4 hover:text-[#e6e8eb] active:text-[16px] w-[81px] inline-block'><Link to='/login'>Log In</Link></span>
                 <Button content='Sign Up' style='signUpBtn btnEffects' path='/signup' />
             </div>
         </nav>
