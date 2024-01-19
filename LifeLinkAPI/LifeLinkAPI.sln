@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeLinkAPI", "LifeLinkAPI\LifeLinkAPI.csproj", "{F6C9411F-37D4-4D18-8141-C7BC7A219BAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeLinkAPI.Web", "LifeLinkAPI.Web\LifeLinkAPI.Web.csproj", "{F6C9411F-37D4-4D18-8141-C7BC7A219BAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeLinkAPI.Domain", "LifeLinkAPI.Domain\LifeLinkAPI.Domain.csproj", "{E8A60E4D-F9CA-43C2-B91F-556BECE79308}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeLinkAPI.Infrastructure", "LifeLinkAPI.Infrastructure\LifeLinkAPI.Infrastructure.csproj", "{BAA21DDD-3F4E-437F-8F86-D599F1BE5E75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeLinkAPI.Tests", "LifeLinkAPI.Tests\LifeLinkAPI.Tests.csproj", "{4267346B-E41E-4B14-913A-51BC49B893BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeLinkAPI.Application", "LifeLinkAPI.Application\LifeLinkAPI.Application.csproj", "{887DBBC7-CC48-46ED-BE05-78C0F75BA08C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{F6C9411F-37D4-4D18-8141-C7BC7A219BAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6C9411F-37D4-4D18-8141-C7BC7A219BAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6C9411F-37D4-4D18-8141-C7BC7A219BAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8A60E4D-F9CA-43C2-B91F-556BECE79308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8A60E4D-F9CA-43C2-B91F-556BECE79308}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8A60E4D-F9CA-43C2-B91F-556BECE79308}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8A60E4D-F9CA-43C2-B91F-556BECE79308}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAA21DDD-3F4E-437F-8F86-D599F1BE5E75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAA21DDD-3F4E-437F-8F86-D599F1BE5E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAA21DDD-3F4E-437F-8F86-D599F1BE5E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAA21DDD-3F4E-437F-8F86-D599F1BE5E75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4267346B-E41E-4B14-913A-51BC49B893BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4267346B-E41E-4B14-913A-51BC49B893BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4267346B-E41E-4B14-913A-51BC49B893BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4267346B-E41E-4B14-913A-51BC49B893BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{887DBBC7-CC48-46ED-BE05-78C0F75BA08C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{887DBBC7-CC48-46ED-BE05-78C0F75BA08C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{887DBBC7-CC48-46ED-BE05-78C0F75BA08C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{887DBBC7-CC48-46ED-BE05-78C0F75BA08C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
