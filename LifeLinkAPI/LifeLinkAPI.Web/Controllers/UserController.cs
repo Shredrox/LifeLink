@@ -1,4 +1,4 @@
-﻿using LifeLinkAPI.Application.Interfaces;
+﻿using LifeLinkAPI.Application.Interfaces.IServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LifeLinkAPI.Controllers

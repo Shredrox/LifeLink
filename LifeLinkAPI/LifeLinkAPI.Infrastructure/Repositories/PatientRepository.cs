@@ -1,4 +1,4 @@
-﻿using LifeLinkAPI.Application.Interfaces.Repositories;
+﻿using LifeLinkAPI.Application.Interfaces.IRepositories;
 using LifeLinkAPI.Domain.Models;
 using LifeLinkAPI.Infrastructure.Data;
 

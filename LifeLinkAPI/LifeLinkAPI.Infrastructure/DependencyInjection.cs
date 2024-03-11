@@ -1,5 +1,5 @@
-using LifeLinkAPI.Application.Interfaces;
-using LifeLinkAPI.Application.Interfaces.Repositories;
+using LifeLinkAPI.Application.Interfaces.IRepositories;
+using LifeLinkAPI.Application.Interfaces.IServices;
 using LifeLinkAPI.Application.Services;
 using LifeLinkAPI.Domain.Models;
 using LifeLinkAPI.Infrastructure.Data;
