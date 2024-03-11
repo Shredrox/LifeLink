@@ -59,7 +59,7 @@ namespace LifeLinkAPI.Application.Services
             await _patientRepository.Add(patient);
         }
         
-        public async Task<LoginResponseDTO?> Login(UserDTO request)
+        public async Task<LoginResponseDto?> Login(UserDTO request)
         {
             var user = await _userRepository.GetUserByUsernameOrEmail(request.Username, request.Email);
 
@@ -71,7 +71,7 @@ namespace LifeLinkAPI.Application.Services
             var token = CreateToken(user);
             var refreshToken = await CreateRefreshToken(user);
 
-            var loginResponseDto = new LoginResponseDTO
+            var loginResponseDto = new LoginResponseDto
             {
                 Username = user.UserName,
                 AccessToken = token,

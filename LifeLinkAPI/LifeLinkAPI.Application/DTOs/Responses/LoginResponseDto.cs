@@ -1,6 +1,6 @@
 ﻿namespace LifeLinkAPI.Application.DTOs.Responses;
 
-public class LoginResponseDTO
+public class LoginResponseDto
 {
     public string? Username { get; set; } = string.Empty;
     public string AccessToken { get; set; } = string.Empty;

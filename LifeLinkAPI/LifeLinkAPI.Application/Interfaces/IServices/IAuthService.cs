@@ -7,7 +7,7 @@ namespace LifeLinkAPI.Application.Interfaces.IServices
     public interface IAuthService
     {
         Task Register(UserDTO request);
-        Task<LoginResponseDTO?> Login(UserDTO request);
+        Task<LoginResponseDto?> Login(UserDTO request);
         public string CreateToken(User user);
         public Task<string> CreateRefreshToken(User user);
         public Task<User?> GetUserFromRefreshToken(string refreshToken);
