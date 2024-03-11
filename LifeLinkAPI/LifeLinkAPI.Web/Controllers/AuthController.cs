@@ -1,4 +1,4 @@
-using LifeLinkAPI.Application.DTOs;
+using LifeLinkAPI.Application.DTOs.Requests;
 using LifeLinkAPI.Application.Interfaces.IServices;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,7 +20,7 @@ namespace LifeLinkAPI.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] UserDTO request)
+        public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace LifeLinkAPI.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(UserDTO request)
+        public async Task<IActionResult> Login(LoginRequestDto request)
         {
             try
             {

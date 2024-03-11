@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using LifeLinkAPI.Application.DTOs;
+using LifeLinkAPI.Application.DTOs.Requests;
 using LifeLinkAPI.Application.DTOs.Responses;
 using LifeLinkAPI.Application.Interfaces.IRepositories;
 using LifeLinkAPI.Application.Interfaces.IServices;
@@ -30,7 +31,7 @@ namespace LifeLinkAPI.Application.Services
             _patientRepository = patientRepository;
         }
         
-        public async Task Register(UserDTO request)
+        public async Task Register(RegisterRequestDto request)
         {
             var user = new User
             {
@@ -59,7 +60,7 @@ namespace LifeLinkAPI.Application.Services
             await _patientRepository.Add(patient);
         }
         
-        public async Task<LoginResponseDto?> Login(UserDTO request)
+        public async Task<LoginResponseDto?> Login(LoginRequestDto request)
         {
             var user = await _userRepository.GetUserByUsernameOrEmail(request.Username, request.Email);
 
