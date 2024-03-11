@@ -10,13 +10,16 @@ namespace LifeLinkAPI.Controllers
     {
         private readonly IUserService _userService;
         private readonly IAuthService _authService;
+        private readonly ITokenService _tokenService;
         
          public AuthController(
             IUserService userService,
-            IAuthService authService)
+            IAuthService authService, 
+            ITokenService tokenService)
         {
             _userService = userService;
             _authService = authService;
+            _tokenService = tokenService;
         }
 
         [HttpPost("register")]
@@ -133,8 +136,8 @@ namespace LifeLinkAPI.Controllers
             }
 
             var username = user.UserName;
-            var newAccessToken = _authService.CreateToken(user);
-            var newRefreshToken = await _authService.CreateRefreshToken(user);
+            var newAccessToken = _tokenService.CreateToken(user);
+            var newRefreshToken = await _tokenService.CreateRefreshToken(user);
 
             Response.Cookies.Append("AccessToken", newAccessToken, new CookieOptions
             {
