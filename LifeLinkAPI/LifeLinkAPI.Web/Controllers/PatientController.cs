@@ -15,13 +15,5 @@ namespace LifeLinkAPI.Controllers
         {
             _medicalDataService = medicalDataService;
         }
-
-        [Authorize]
-        [HttpPost("BookAppointment")]
-        public async Task<IActionResult> BookAppointment(AppointmentDTO request)
-        {
-            
-            return Ok();
-        }
     }
 }
