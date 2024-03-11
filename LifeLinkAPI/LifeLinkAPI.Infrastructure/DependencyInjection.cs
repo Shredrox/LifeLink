@@ -17,11 +17,11 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        services.AddDbContext<AppDbContext>(options => options.UseNpgsql(
+        services.AddDbContext<LifeLinkDbContext>(options => options.UseNpgsql(
             configuration.GetConnectionString("LifeLinkDb")));
         
         services.AddIdentity<User, IdentityRole>()
-            .AddEntityFrameworkStores<AppDbContext>()
+            .AddEntityFrameworkStores<LifeLinkDbContext>()
             .AddDefaultTokenProviders();
         
         services.AddScoped<IUserService, UserService>();

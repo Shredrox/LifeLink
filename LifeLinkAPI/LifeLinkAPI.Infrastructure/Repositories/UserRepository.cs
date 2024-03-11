@@ -8,11 +8,11 @@ namespace LifeLinkAPI.Infrastructure.Repositories;
 
 public class UserRepository : IUserRepository
 {
-    private readonly AppDbContext _context;
+    private readonly LifeLinkDbContext _context;
     private readonly UserManager<User> _userManager;
 
     public UserRepository(
-        AppDbContext context, 
+        LifeLinkDbContext context, 
         UserManager<User> userManager)
     {
         _context = context;

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LifeLinkAPI.Infrastructure.Data
 {
-    public class AppDbContext : IdentityDbContext<User>
+    public class LifeLinkDbContext : IdentityDbContext<User>
     {
-        public AppDbContext(DbContextOptions options) : base(options)
+        public LifeLinkDbContext(DbContextOptions options) : base(options)
         {
 
         }
