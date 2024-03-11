@@ -1,7 +1,6 @@
-﻿using LifeLinkAPI.Application.DTOs;
-using LifeLinkAPI.Domain.Models;
+﻿using LifeLinkAPI.Domain.Models;
 
-namespace LifeLinkAPI.Application.Interfaces
+namespace LifeLinkAPI.Application.Interfaces.IServices
 {
     public interface IUserService
     {
