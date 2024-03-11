@@ -63,12 +63,7 @@ namespace LifeLinkAPI.Application.Services
             var token = _tokenService.CreateToken(user);
             var refreshToken = await _tokenService.CreateRefreshToken(user);
 
-            var loginResponseDto = new LoginResponseDto
-            {
-                Username = user.UserName,
-                AccessToken = token,
-                RefreshToken = refreshToken
-            };
+            var loginResponseDto = new LoginResponseDto(user.UserName, token, refreshToken);
 
             return loginResponseDto;
         }
