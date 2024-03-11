@@ -19,7 +19,7 @@ namespace LifeLinkAPI.Controllers
             _authService = authService;
         }
 
-        [HttpPost("Register")]
+        [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserDTO request)
         {
             try
@@ -39,7 +39,7 @@ namespace LifeLinkAPI.Controllers
             }
         }
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Login(UserDTO request)
         {
             try
@@ -89,7 +89,7 @@ namespace LifeLinkAPI.Controllers
             }
         }
 
-        [HttpPost("Logout")]
+        [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
             var refreshToken = Request.Cookies["RefreshToken"];
@@ -106,6 +106,8 @@ namespace LifeLinkAPI.Controllers
                 return NoContent();
             }
 
+            Response.Cookies.Delete("RefreshToken");
+            
             user.RefreshToken = null;
             user.RefreshTokenValidity = null;
 
@@ -114,9 +116,7 @@ namespace LifeLinkAPI.Controllers
             return NoContent();
         }
         
-        [HttpPost("RefreshToken")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshToken()
         {
             var refreshToken = Request.Cookies["RefreshToken"];
