@@ -124,24 +124,24 @@ namespace LifeLinkAPI.Application.Services
             return jwt;
         }
 
-        public Task<User?> GetUserFromRefreshToken(string refreshToken)
+        public async Task<User?> GetUserFromRefreshToken(string refreshToken)
         {
             try
             {
-                // var user = await _context.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken && u.RefreshTokenValidity > DateTime.Now.ToUniversalTime());
-                //
-                // if (user != null)
-                // {
-                //     return await _userService.GetUserById(user.Id);
-                // }
+                var user = await _userRepository.GetUserByRefreshToken(refreshToken);
 
-                return null;
+                if (user is null)
+                {
+                    return null;
+                }
+
+                return await _userService.GetUserById(user.Id);
+                
             }
             catch (Exception e)
             {
                 throw;
             }
-
         }
     }
 }
