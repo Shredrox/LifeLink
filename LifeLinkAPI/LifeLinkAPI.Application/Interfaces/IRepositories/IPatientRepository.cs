@@ -1,6 +1,6 @@
 ﻿using LifeLinkAPI.Domain.Models;
 
-namespace LifeLinkAPI.Application.Interfaces.Repositories;
+namespace LifeLinkAPI.Application.Interfaces.IRepositories;
 
 public interface IPatientRepository
 {

@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using LifeLinkAPI.Application.DTOs;
-using LifeLinkAPI.Application.Interfaces;
+using LifeLinkAPI.Application.Interfaces.IServices;
 
 namespace LifeLinkAPI.Controllers
 {

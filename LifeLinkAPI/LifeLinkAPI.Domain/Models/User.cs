@@ -12,7 +12,6 @@ namespace LifeLinkAPI.Domain.Models
     public enum Role
     {
         Admin,
-        ClinicManager,
         Doctor,
         Patient
     }

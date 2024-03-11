@@ -1,4 +1,4 @@
-﻿using LifeLinkAPI.Application.Interfaces.Repositories;
+﻿using LifeLinkAPI.Application.Interfaces.IRepositories;
 using LifeLinkAPI.Domain.Models;
 using LifeLinkAPI.Infrastructure.Data;
 
@@ -6,9 +6,9 @@ namespace LifeLinkAPI.Infrastructure.Repositories;
 
 public class PatientRepository : IPatientRepository
 {
-    private readonly AppDbContext _context;
+    private readonly LifeLinkDbContext _context;
 
-    public PatientRepository(AppDbContext context)
+    public PatientRepository(LifeLinkDbContext context)
     {
         _context = context;
     }

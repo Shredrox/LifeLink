@@ -1,5 +1,5 @@
-using LifeLinkAPI.Application.Interfaces;
-using LifeLinkAPI.Application.Interfaces.Repositories;
+using LifeLinkAPI.Application.Interfaces.IRepositories;
+using LifeLinkAPI.Application.Interfaces.IServices;
 using LifeLinkAPI.Application.Services;
 using LifeLinkAPI.Domain.Models;
 using LifeLinkAPI.Infrastructure.Data;
@@ -17,11 +17,11 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        services.AddDbContext<AppDbContext>(options => options.UseNpgsql(
+        services.AddDbContext<LifeLinkDbContext>(options => options.UseNpgsql(
             configuration.GetConnectionString("LifeLinkDb")));
         
         services.AddIdentity<User, IdentityRole>()
-            .AddEntityFrameworkStores<AppDbContext>()
+            .AddEntityFrameworkStores<LifeLinkDbContext>()
             .AddDefaultTokenProviders();
         
         services.AddScoped<IUserService, UserService>();

@@ -1,6 +1,6 @@
 ﻿using LifeLinkAPI.Application.DTOs;
-using LifeLinkAPI.Application.Interfaces;
-using LifeLinkAPI.Application.Interfaces.Repositories;
+using LifeLinkAPI.Application.Interfaces.IRepositories;
+using LifeLinkAPI.Application.Interfaces.IServices;
 using LifeLinkAPI.Domain.Models;
 
 namespace LifeLinkAPI.Application.Services
