@@ -1,34 +1,25 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
-using LifeLinkAPI.Application.DTOs;
-using LifeLinkAPI.Application.DTOs.Requests;
+﻿using LifeLinkAPI.Application.DTOs.Requests;
 using LifeLinkAPI.Application.DTOs.Responses;
 using LifeLinkAPI.Application.Interfaces.IRepositories;
 using LifeLinkAPI.Application.Interfaces.IServices;
 using LifeLinkAPI.Domain.Models;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 
 namespace LifeLinkAPI.Application.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly IConfiguration _configuration;
         private readonly IUserRepository _userRepository;
         private readonly IPatientRepository _patientRepository;
-        private readonly IUserService _userService;
+        private readonly ITokenService _tokenService;
 
-        public AuthService(IConfiguration configuration, 
-            IUserService userService, 
+        public AuthService(
             IUserRepository userRepository, 
-            IPatientRepository patientRepository)
+            IPatientRepository patientRepository, 
+            ITokenService tokenService)
         {
-            _configuration = configuration;
-            _userService = userService;
             _userRepository = userRepository;
             _patientRepository = patientRepository;
+            _tokenService = tokenService;
         }
         
         public async Task Register(RegisterRequestDto request)
@@ -46,7 +37,7 @@ namespace LifeLinkAPI.Application.Services
             {
                 FirstName = request.FirstName,
                 LastName = request.LastName,
-                SSN = "1",
+                SSN = request.SSN,
                 PhoneNumber = request.PhoneNumber,
                 MedicalRecord = new MedicalRecord 
                 { 
@@ -69,8 +60,8 @@ namespace LifeLinkAPI.Application.Services
                 return null;
             }
             
-            var token = CreateToken(user);
-            var refreshToken = await CreateRefreshToken(user);
+            var token = _tokenService.CreateToken(user);
+            var refreshToken = await _tokenService.CreateRefreshToken(user);
 
             var loginResponseDto = new LoginResponseDto
             {
@@ -81,49 +72,7 @@ namespace LifeLinkAPI.Application.Services
 
             return loginResponseDto;
         }
-
-        public async Task<string> CreateRefreshToken(User user)
-        {
-            try
-            {
-                var refreshToken = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
-
-                user.RefreshToken = refreshToken;
-                user.RefreshTokenValidity = DateTime.Now.AddHours(2).ToUniversalTime(); 
-
-                await _userService.Update(user);
-
-                return refreshToken;
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
-        }
-
-        public string CreateToken(User user)
-        {
-            List<Claim> claims = new()
-            {
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, user.Role.ToString())
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                _configuration.GetSection("Jwt:Token").Value!));
-
-            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
-
-            var token = new JwtSecurityToken(
-                claims: claims, 
-                expires: DateTime.Now.AddHours(1),
-                signingCredentials: credentials);
-
-            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-
-            return jwt;
-        }
-
+        
         public async Task<User?> GetUserFromRefreshToken(string refreshToken)
         {
             try
@@ -135,7 +84,7 @@ namespace LifeLinkAPI.Application.Services
                     return null;
                 }
 
-                return await _userService.GetUserById(user.Id);
+                return await _userRepository.GetUserById(user.Id);
                 
             }
             catch (Exception e)
