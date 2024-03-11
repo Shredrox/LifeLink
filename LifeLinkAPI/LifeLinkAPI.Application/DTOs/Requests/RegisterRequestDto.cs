@@ -8,4 +8,5 @@ public record RegisterRequestDto(
     string Password,
     string PhoneNumber,
     string Gender,
-    string Address);
+    string Address,
+    string SSN);
