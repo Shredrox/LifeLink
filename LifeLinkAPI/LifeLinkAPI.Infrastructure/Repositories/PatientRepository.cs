@@ -1,6 +1,7 @@
 ﻿using LifeLinkAPI.Application.Interfaces.IRepositories;
 using LifeLinkAPI.Domain.Models;
 using LifeLinkAPI.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace LifeLinkAPI.Infrastructure.Repositories;
 
@@ -17,5 +18,11 @@ public class PatientRepository : IPatientRepository
     {
         _context.Patients.Add(patient);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<Patient?> GetPatientById(int id)
+    {
+        return await _context.Patients
+            .FirstOrDefaultAsync(p => p.Id == id);
     }
 }
