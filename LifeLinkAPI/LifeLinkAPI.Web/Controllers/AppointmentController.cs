@@ -22,9 +22,16 @@ namespace LifeLinkAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAppointment([FromBody] CreateAppointmentRequestDto request)
+        public async Task<IActionResult> CreateAppointment([FromBody] BookAppointmentRequestDto request)
         {
+            await _appointmentService.CreateAppointment(request);
             return Ok("Appointment created");
+        }
+        
+        [HttpGet("hours")]
+        public async Task<IActionResult> GetAppointmentHours([FromQuery] int doctorId, [FromQuery] DateTime date)
+        {
+            return Ok(await _appointmentService.GetAllAppointmentHoursByDoctorAndDate(doctorId, date));
         }
     }
 }
