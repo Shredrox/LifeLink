@@ -19,6 +19,11 @@ public class UserRepository : IUserRepository
         _userManager = userManager;
     }
 
+    public async Task<User?> GetUserByRefreshToken(string refreshToken)
+    {
+        return await _context.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken && u.RefreshTokenValidity > DateTime.Now.ToUniversalTime());
+    }
+
     public async Task<List<User>> GetAllUsers()
     {
         return await _context.Users.ToListAsync();

@@ -5,14 +5,6 @@ namespace LifeLinkAPI.Application.Services
 {
     public class MedicalDataService : IMedicalDataService
     {
-
-        public MedicalDataService()
-        {
-        }
-
-        public Task CreateAppointment(AppointmentDTO request)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

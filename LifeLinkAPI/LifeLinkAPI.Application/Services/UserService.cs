@@ -1,4 +1,5 @@
 ﻿using LifeLinkAPI.Application.DTOs;
+using LifeLinkAPI.Application.DTOs.Requests;
 using LifeLinkAPI.Application.Interfaces.IRepositories;
 using LifeLinkAPI.Application.Interfaces.IServices;
 using LifeLinkAPI.Domain.Models;
@@ -18,7 +19,7 @@ namespace LifeLinkAPI.Application.Services
             _patientRepository = patientRepository;
         }
 
-        public async Task RegisterDoctor(UserDTO request)
+        public async Task RegisterDoctor(RegisterRequestDto request)
         {
             var user = new User
             {
