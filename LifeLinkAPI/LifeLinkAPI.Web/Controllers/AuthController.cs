@@ -105,10 +105,12 @@ namespace LifeLinkAPI.Controllers
 
             if (user is null)
             {
+                Response.Cookies.Delete("AccessToken");
                 Response.Cookies.Delete("RefreshToken");
                 return NoContent();
             }
 
+            Response.Cookies.Delete("AccessToken");
             Response.Cookies.Delete("RefreshToken");
             
             user.RefreshToken = null;
@@ -148,6 +150,7 @@ namespace LifeLinkAPI.Controllers
                 IsEssential = true,
                 SameSite = SameSiteMode.None
             });
+            
             Response.Cookies.Append("RefreshToken", newRefreshToken, new CookieOptions
             {
                 HttpOnly = true,
@@ -157,7 +160,8 @@ namespace LifeLinkAPI.Controllers
                 IsEssential = true,
                 SameSite = SameSiteMode.None
             });
-            return Ok(new {newAccessToken, username });
+            
+            return Ok(new { newAccessToken, username });
         }
     }
 }
