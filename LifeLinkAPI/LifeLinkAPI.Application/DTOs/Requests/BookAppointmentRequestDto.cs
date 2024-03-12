@@ -3,4 +3,5 @@
 public record BookAppointmentRequestDto(
     int DoctorId,
     int PatientId,
-    int AppointmentHourId);
+    int AppointmentHourId,
+    DateTime Date);
