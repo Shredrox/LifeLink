@@ -23,5 +23,6 @@ namespace LifeLinkAPI.Infrastructure.Data
         public DbSet<Diagnosis> Diagnoses { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<AppointmentHour> AppointmentHours { get; set; }
     }
 }
