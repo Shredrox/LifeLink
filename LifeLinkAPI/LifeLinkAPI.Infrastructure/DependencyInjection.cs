@@ -1,6 +1,4 @@
 using LifeLinkAPI.Application.Interfaces.IRepositories;
-using LifeLinkAPI.Application.Interfaces.IServices;
-using LifeLinkAPI.Application.Services;
 using LifeLinkAPI.Domain.Models;
 using LifeLinkAPI.Infrastructure.Data;
 using LifeLinkAPI.Infrastructure.Repositories;
@@ -24,13 +22,9 @@ public static class DependencyInjection
             .AddEntityFrameworkStores<LifeLinkDbContext>()
             .AddDefaultTokenProviders();
         
-        services.AddScoped<IUserService, UserService>();
-        services.AddScoped<IAuthService, AuthService>();
-        services.AddScoped<IMedicalDataService, MedicalDataService>();
-        services.AddScoped<ITokenService, TokenService>();
-        
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IPatientRepository, PatientRepository>();
+        services.AddScoped<IAppointmentRepository, AppointmentRepository>();
         
         return services;
     }
