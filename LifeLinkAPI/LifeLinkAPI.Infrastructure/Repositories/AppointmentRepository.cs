@@ -23,7 +23,7 @@ public class AppointmentRepository : IAppointmentRepository
     public async Task<List<Appointment>> GetAllAppointmentsByDoctorAndDate(int doctorId, DateTime date)
     {
         return await _context.Appointments
-            .Where(a => a.Date == date && a.DoctorId == doctorId)
+            .Where(a => a.Date.ToLocalTime().Date == date.Date && a.DoctorId == doctorId)
             .ToListAsync();
     }
 }
