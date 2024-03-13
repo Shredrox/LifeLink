@@ -10,4 +10,5 @@ public record RegisterDoctorRequestDto(
     string Experience,
     int Age,
     string PhoneNumber,
-    string WorkHours);
+    string WorkHours,
+    string AppointmentHours);
