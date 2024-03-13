@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using LifeLinkAPI.Application;
 using LifeLinkAPI.Infrastructure;
 
 namespace LifeLinkAPI
@@ -32,6 +33,7 @@ namespace LifeLinkAPI
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddInfrastructure(builder.Configuration);
+            builder.Services.AddApplication();
 
             builder.Services.AddAuthentication(options =>
             {
