@@ -14,6 +14,12 @@ public class AppointmentHourRepository : IAppointmentHourRepository
         _context = context;
     }
 
+    public async Task Add(AppointmentHour appointmentHour)
+    {
+        _context.AppointmentHours.Add(appointmentHour);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task<AppointmentHour?> GetAppointmentHourById(int id)
     {
         return await _context.AppointmentHours
