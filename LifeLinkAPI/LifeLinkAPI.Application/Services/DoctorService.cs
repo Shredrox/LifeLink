@@ -9,13 +9,16 @@ public class DoctorService : IDoctorService
 {
     private readonly IDoctorRepository _doctorRepository;
     private readonly IUserRepository _userRepository;
+    private readonly IAppointmentHourRepository _appointmentHourRepository;
 
     public DoctorService(
         IDoctorRepository doctorRepository, 
-        IUserRepository userRepository)
+        IUserRepository userRepository, 
+        IAppointmentHourRepository appointmentHourRepository)
     {
         _doctorRepository = doctorRepository;
         _userRepository = userRepository;
+        _appointmentHourRepository = appointmentHourRepository;
     }
 
     public async Task RegisterDoctor(RegisterDoctorRequestDto request)
@@ -45,5 +48,16 @@ public class DoctorService : IDoctorService
         };
         
         await _doctorRepository.Add(doctor);
+
+        foreach (var hour in request.AppointmentHours.Split(','))
+        {
+            var appointmentHour = new AppointmentHour
+            {
+                Time = TimeSpan.Parse(hour),
+                Schedule = doctor.Schedule
+            };
+
+            await _appointmentHourRepository.Add(appointmentHour);
+        }
     }
 }
