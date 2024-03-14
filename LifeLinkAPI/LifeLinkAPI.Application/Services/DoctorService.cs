@@ -30,7 +30,7 @@ public class DoctorService : IDoctorService
             Role = Role.Doctor
         };
 
-        await _userRepository.Add(user, request.Password);
+        await _userRepository.InsertUser(user, request.Password);
 
         var doctor = new Doctor
         {
@@ -47,7 +47,7 @@ public class DoctorService : IDoctorService
             User = user
         };
         
-        await _doctorRepository.Add(doctor);
+        await _doctorRepository.InsertDoctor(doctor);
 
         foreach (var hour in request.AppointmentHours.Split(','))
         {
@@ -57,7 +57,7 @@ public class DoctorService : IDoctorService
                 Schedule = doctor.Schedule
             };
 
-            await _appointmentHourRepository.Add(appointmentHour);
+            await _appointmentHourRepository.InsertAppointmentHour(appointmentHour);
         }
     }
 }

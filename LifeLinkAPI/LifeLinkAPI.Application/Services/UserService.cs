@@ -28,7 +28,7 @@ namespace LifeLinkAPI.Application.Services
                 Role = Role.Doctor
             };
 
-            await _userRepository.Add(user, request.Password);
+            await _userRepository.InsertUser(user, request.Password);
             
             //TO DO: Implement Doctor registering
         }
@@ -50,7 +50,7 @@ namespace LifeLinkAPI.Application.Services
             existingUser.RefreshToken = user.RefreshToken;
             existingUser.RefreshTokenValidity = user.RefreshTokenValidity;
 
-            await _userRepository.Update(user);
+            await _userRepository.UpdateUser(user);
         }
 
         public async Task<User?> GetUserByName(string name)
@@ -58,7 +58,7 @@ namespace LifeLinkAPI.Application.Services
             return await _userRepository.GetUserByUsernameOrEmail(name, "");
         }
 
-        public async Task<List<User>> GetAllUsers()
+        public async Task<IEnumerable<User>> GetAllUsers()
         {
             return await _userRepository.GetAllUsers();
         }
