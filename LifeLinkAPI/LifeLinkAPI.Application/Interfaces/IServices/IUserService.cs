@@ -7,7 +7,7 @@ namespace LifeLinkAPI.Application.Interfaces.IServices
         public Task<User?> GetUserById(string id);
         public Task Update(User user);
         public Task<User?> GetUserByName(string name);
-        public Task<List<User>> GetAllUsers();
+        public Task<IEnumerable<User>> GetAllUsers();
         public Task CreateDoctor(User request);
         public Task CreateHospitalAdmin(User request);
     }

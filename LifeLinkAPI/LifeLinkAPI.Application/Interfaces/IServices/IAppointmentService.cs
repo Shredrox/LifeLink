@@ -5,6 +5,6 @@ namespace LifeLinkAPI.Application.Interfaces.IServices;
 
 public interface IAppointmentService
 {
-    Task CreateAppointment(BookAppointmentRequestDto request);
     Task<AppointmentHoursResponseDto> GetAllAppointmentHoursByDoctorAndDate(int doctorId, DateTime date);
+    Task CreateAppointment(BookAppointmentRequestDto request);
 }

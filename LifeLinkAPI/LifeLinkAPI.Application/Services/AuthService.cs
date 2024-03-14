@@ -31,7 +31,7 @@ namespace LifeLinkAPI.Application.Services
                 Role = Role.Patient
             };
 
-            await _userRepository.Add(user, request.Password);
+            await _userRepository.InsertUser(user, request.Password);
 
             var patient = new Patient
             {
@@ -43,12 +43,12 @@ namespace LifeLinkAPI.Application.Services
                 { 
                     Gender = request.Gender, 
                     Address = request.Address, 
-                    BirthDate = DateTime.Now.ToUniversalTime()
+                    BirthDate = request.BirthDate
                 },
                 User = user
             };
 
-            await _patientRepository.Add(patient);
+            await _patientRepository.InsertPatient(patient);
         }
         
         public async Task<LoginResponseDto?> Login(LoginRequestDto request)

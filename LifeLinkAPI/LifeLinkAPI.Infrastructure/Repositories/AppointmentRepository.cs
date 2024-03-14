@@ -13,17 +13,17 @@ public class AppointmentRepository : IAppointmentRepository
     {
         _context = context;
     }
-
-    public async Task CreateAppointment(Appointment appointment)
-    {
-        _context.Appointments.Add(appointment);
-        await _context.SaveChangesAsync();
-    }
-
-    public async Task<List<Appointment>> GetAllAppointmentsByDoctorAndDate(int doctorId, DateTime date)
+    
+    public async Task<IEnumerable<Appointment>> GetAppointmentsByDoctorIdAndDate(int doctorId, DateTime date)
     {
         return await _context.Appointments
             .Where(a => a.Date.ToLocalTime().Date == date.Date && a.DoctorId == doctorId)
             .ToListAsync();
+    }
+    
+    public async Task InsertAppointment(Appointment appointment)
+    {
+        _context.Appointments.Add(appointment);
+        await _context.SaveChangesAsync();
     }
 }

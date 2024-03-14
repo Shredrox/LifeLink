@@ -4,6 +4,6 @@ namespace LifeLinkAPI.Application.Interfaces.IRepositories;
 
 public interface IAppointmentRepository
 {
-    Task CreateAppointment(Appointment appointment);
-    Task<List<Appointment>> GetAllAppointmentsByDoctorAndDate(int doctorId, DateTime date);
+    Task<IEnumerable<Appointment>> GetAppointmentsByDoctorIdAndDate(int doctorId, DateTime date);
+    Task InsertAppointment(Appointment appointment);
 }

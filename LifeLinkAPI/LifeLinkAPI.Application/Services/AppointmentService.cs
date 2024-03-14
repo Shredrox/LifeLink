@@ -26,6 +26,22 @@ public class AppointmentService : IAppointmentService
         _appointmentRepository = appointmentRepository;
     }
     
+    public async Task<AppointmentHoursResponseDto> GetAllAppointmentHoursByDoctorAndDate(int doctorId, DateTime date)
+    {
+        var appointmentHours = await _appointmentHourRepository.GetAppointmentHoursByDoctor(doctorId);
+        var appointments = await _appointmentRepository.GetAppointmentsByDoctorIdAndDate(doctorId, date);
+        
+        var appointmentHoursDtos = appointmentHours
+            .Select(ah => new AppointmentHourDto
+            {
+                Time = ah.Time,
+                Booked = appointments.Any(a => a.AppointmentHour.Time == ah.Time)
+            })
+            .ToList();
+        
+        return new AppointmentHoursResponseDto(appointmentHoursDtos);
+    }
+    
     public async Task CreateAppointment(BookAppointmentRequestDto request)
     {
         var appointmentHour = await _appointmentHourRepository.GetAppointmentHourById(request.AppointmentHourId);
@@ -45,22 +61,6 @@ public class AppointmentService : IAppointmentService
             Date = request.Date
         };
 
-        await _appointmentRepository.CreateAppointment(appointment);
-    }
-
-    public async Task<AppointmentHoursResponseDto> GetAllAppointmentHoursByDoctorAndDate(int doctorId, DateTime date)
-    {
-        var appointmentHours = await _appointmentHourRepository.GetAllAppointmentHoursByDoctor(doctorId);
-        var appointments = await _appointmentRepository.GetAllAppointmentsByDoctorAndDate(doctorId, date);
-        
-        var appointmentHoursDtos = appointmentHours
-            .Select(ah => new AppointmentHourDto
-            {
-                Time = ah.Time,
-                Booked = appointments.Any(a => a.AppointmentHour.Time == ah.Time)
-            })
-            .ToList();
-        
-        return new AppointmentHoursResponseDto(appointmentHoursDtos);
+        await _appointmentRepository.InsertAppointment(appointment);
     }
 }

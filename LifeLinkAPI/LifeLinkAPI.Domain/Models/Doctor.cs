@@ -9,9 +9,15 @@
         public string Experience { get; set; }
         public int Age { get; set; }
         public string PhoneNumber { get; set; }
-        public List<Appointment> Appointments { get; set; }
-        public List<Prescription> Prescriptions { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
+        public ICollection<Prescription> Prescriptions { get; set; }
         public Schedule Schedule { get; set; }
         public User User { get; set; }
+
+        public Doctor()
+        {
+            Appointments = new List<Appointment>();
+            Prescriptions = new List<Prescription>();
+        }
     }
 }

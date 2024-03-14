@@ -21,10 +21,11 @@ public class UserRepository : IUserRepository
 
     public async Task<User?> GetUserByRefreshToken(string refreshToken)
     {
-        return await _context.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken && u.RefreshTokenValidity > DateTime.Now.ToUniversalTime());
+        return await _context.Users
+            .FirstOrDefaultAsync(u => u.RefreshToken == refreshToken && u.RefreshTokenValidity > DateTime.Now.ToUniversalTime());
     }
 
-    public async Task<List<User>> GetAllUsers()
+    public async Task<IEnumerable<User>> GetAllUsers()
     {
         return await _context.Users.ToListAsync();
     }
@@ -44,14 +45,13 @@ public class UserRepository : IUserRepository
         return await _context.Users.FirstOrDefaultAsync(user => user.UserName == username || user.Email == email);
     }
     
-    public async Task Add(User user, string password)
+    public async Task InsertUser(User user, string password)
     {
         user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, password);
-        
         await _userManager.CreateAsync(user, password);
     }
 
-    public async Task Update(User user)
+    public async Task UpdateUser(User user)
     {
         _context.Entry(user).State = EntityState.Modified;
         await _context.SaveChangesAsync();

@@ -8,7 +8,12 @@
         public required string SSN { get; set; }
         public required string PhoneNumber { get; set; }
         public MedicalRecord MedicalRecord { get; set; }
-        public List<Payment>? Payments { get; set; }
+        public ICollection<Payment>? Payments { get; set; }
         public User User { get; set; }
+
+        public Patient()
+        {
+            Payments = new List<Payment>();
+        }
     }
 }
