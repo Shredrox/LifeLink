@@ -19,6 +19,12 @@ public class MedicalRecordRepository : IMedicalRecordRepository
         return await _context.MedicalRecords.FindAsync(id);
     }
 
+    public async Task<MedicalRecord?> GetMedicalRecordByPatientId(int patientId)
+    {
+        return await _context.MedicalRecords
+            .FirstOrDefaultAsync(m => m.PatientId == patientId);
+    }
+
     public async Task UpdateMedicalRecord(MedicalRecord medicalRecord)
     {
         _context.Entry(medicalRecord).State = EntityState.Modified;

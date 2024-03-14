@@ -19,6 +19,17 @@ namespace LifeLinkAPI.Application.Services
             _doctorRepository = doctorRepository;
         }
 
+        public async Task<MedicalRecord> GetMedicalRecordByPatientId(int patientId)
+        {
+            var medicalRecord = await _medicalRecordRepository.GetMedicalRecordByPatientId(patientId);
+            if (medicalRecord is null)
+            {
+                throw new MedicalRecordNotFoundException();
+            }
+
+            return medicalRecord;
+        }
+
         public async Task AddDiagnosisToMedicalRecord(AddDiagnosisRequestDto request, int medicalRecordId, int doctorId)
         {
             var medicalRecord = await _medicalRecordRepository.GetMedicalRecordById(medicalRecordId);

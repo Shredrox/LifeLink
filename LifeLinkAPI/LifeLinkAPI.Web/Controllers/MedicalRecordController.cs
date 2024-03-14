@@ -16,7 +16,21 @@ namespace LifeLinkAPI.Controllers
         {
             _medicalRecordService = medicalRecordService;
         }
-
+        
+        [HttpGet("{patientId:int}")]
+        public async Task<IActionResult> GetMedicalRecordByPatientId(int patientId)
+        {
+            try
+            {
+                return Ok(await _medicalRecordService.GetMedicalRecordByPatientId(patientId));
+            }
+            catch (MedicalRecordNotFoundException e)
+            {
+                Console.WriteLine(e);
+                return NotFound();
+            }
+        }
+        
         [Authorize(Roles = "Doctor")]
         [HttpPost("add-diagnosis")]
         public async Task<IActionResult> AddDiagnosis([FromBody] AddDiagnosisRequestDto request, [FromQuery] int medicalRecordId, [FromQuery] int doctorId)
