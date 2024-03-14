@@ -11,7 +11,7 @@ public static class DependencyInjection
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<ITokenService, TokenService>();
-        services.AddScoped<IMedicalDataService, MedicalDataService>();
+        services.AddScoped<IMedicalRecordService, MedicalRecordService>();
         services.AddScoped<IAppointmentService, AppointmentService>();
         services.AddScoped<IDoctorService, DoctorService>();
         

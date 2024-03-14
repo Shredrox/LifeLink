@@ -3,7 +3,7 @@ using LifeLinkAPI.Application.Interfaces.IServices;
 
 namespace LifeLinkAPI.Application.Services
 {
-    public class MedicalDataService : IMedicalDataService
+    public class MedicalRecordService : IMedicalRecordService
     {
         
     }

@@ -2,7 +2,7 @@
 
 namespace LifeLinkAPI.Application.Interfaces.IServices
 {
-    public interface IMedicalDataService
+    public interface IMedicalRecordService
     {
         
     }
