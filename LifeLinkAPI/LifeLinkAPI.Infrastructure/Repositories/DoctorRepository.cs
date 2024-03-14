@@ -13,16 +13,15 @@ public class DoctorRepository : IDoctorRepository
     {
         _context = context;
     }
-
-    public async Task Add(Doctor doctor)
+    
+    public async Task<Doctor?> GetDoctorById(int id)
+    {
+        return await _context.Doctors.FindAsync(id);
+    }
+    
+    public async Task InsertDoctor(Doctor doctor)
     {
         _context.Doctors.Add(doctor);
         await _context.SaveChangesAsync();
-    }
-
-    public async Task<Doctor?> GetDoctorById(int id)
-    {
-        return await _context.Doctors
-            .FirstOrDefaultAsync(d => d.Id == id);
     }
 }

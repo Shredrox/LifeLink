@@ -13,23 +13,22 @@ public class AppointmentHourRepository : IAppointmentHourRepository
     {
         _context = context;
     }
-
-    public async Task Add(AppointmentHour appointmentHour)
-    {
-        _context.AppointmentHours.Add(appointmentHour);
-        await _context.SaveChangesAsync();
-    }
-
+    
     public async Task<AppointmentHour?> GetAppointmentHourById(int id)
     {
-        return await _context.AppointmentHours
-            .FirstOrDefaultAsync(a => a.Id == id);
+        return await _context.AppointmentHours.FindAsync(id);
     }
 
-    public async Task<List<AppointmentHour>> GetAllAppointmentHoursByDoctor(int doctorId)
+    public async Task<IEnumerable<AppointmentHour>> GetAppointmentHoursByDoctor(int doctorId)
     {
         return await _context.AppointmentHours
             .Where(a => a.Schedule.Doctor.Id == doctorId)
             .ToListAsync();
+    }
+    
+    public async Task InsertAppointmentHour(AppointmentHour appointmentHour)
+    {
+        _context.AppointmentHours.Add(appointmentHour);
+        await _context.SaveChangesAsync();
     }
 }
