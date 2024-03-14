@@ -10,14 +10,10 @@ namespace LifeLinkAPI.Controllers
     [ApiController]
     public class AppointmentController : ControllerBase
     {
-        private readonly IMedicalDataService _medicalDataService;
         private readonly IAppointmentService _appointmentService;
 
-        public AppointmentController(
-            IMedicalDataService medicalDataService, 
-            IAppointmentService appointmentService)
+        public AppointmentController(IAppointmentService appointmentService)
         {
-            _medicalDataService = medicalDataService;
             _appointmentService = appointmentService;
         }
 
