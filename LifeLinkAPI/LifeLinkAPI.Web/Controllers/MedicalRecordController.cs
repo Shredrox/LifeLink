@@ -19,14 +19,30 @@ namespace LifeLinkAPI.Controllers
 
         [Authorize(Roles = "Doctor")]
         [HttpPost("add-diagnosis")]
-        public async Task<IActionResult> AddDiagnosis([FromBody] AddDiagnosisRequestDto request, [FromQuery] int medicalRecordId)
+        public async Task<IActionResult> AddDiagnosis([FromBody] AddDiagnosisRequestDto request, [FromQuery] int medicalRecordId, [FromQuery] int doctorId)
         {
             try
             {
-                await _medicalRecordService.AddDiagnosisToMedicalRecord(request, medicalRecordId);
+                await _medicalRecordService.AddDiagnosisToMedicalRecord(request, medicalRecordId, doctorId);
                 return Ok("Diagnosis added to medical record");
             }
-            catch (MedicalRecordNotFoundException e)
+            catch (Exception e) when (e is MedicalRecordNotFoundException or DoctorNotFoundException)
+            {
+                Console.WriteLine(e);
+                return NotFound();
+            }
+        }
+        
+        [Authorize(Roles = "Doctor")]
+        [HttpPost("add-prescription")]
+        public async Task<IActionResult> AddPrescription([FromBody] AddPrescriptionRequestDto request, [FromQuery] int medicalRecordId, [FromQuery] int doctorId)
+        {
+            try
+            {
+                await _medicalRecordService.AddPrescriptionToMedicalRecord(request, medicalRecordId, doctorId);
+                return Ok("Prescription added to medical record");
+            }
+            catch (Exception e) when (e is MedicalRecordNotFoundException or DoctorNotFoundException)
             {
                 Console.WriteLine(e);
                 return NotFound();
