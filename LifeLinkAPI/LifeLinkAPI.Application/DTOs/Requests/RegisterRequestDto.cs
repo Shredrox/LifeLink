@@ -9,4 +9,5 @@ public record RegisterRequestDto(
     string PhoneNumber,
     string Gender,
     string Address,
-    string SSN);
+    string SSN,
+    DateTime BirthDate);

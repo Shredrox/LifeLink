@@ -43,7 +43,7 @@ namespace LifeLinkAPI.Application.Services
                 { 
                     Gender = request.Gender, 
                     Address = request.Address, 
-                    BirthDate = DateTime.Now.ToUniversalTime()
+                    BirthDate = request.BirthDate
                 },
                 User = user
             };
