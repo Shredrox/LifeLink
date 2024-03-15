@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using LifeLinkAPI.Application;
 using LifeLinkAPI.Infrastructure;
+using LifeLinkAPI.Infrastructure.Hubs;
 
 namespace LifeLinkAPI
 {
@@ -87,6 +88,8 @@ namespace LifeLinkAPI
             app.UseAuthorization();
 
             app.MapControllers();
+            
+            app.MapHub<ChatHub>("/chat");
 
             app.Run();
         }
