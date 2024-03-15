@@ -116,7 +116,7 @@ namespace LifeLinkAPI.Controllers
             user.RefreshToken = null;
             user.RefreshTokenValidity = null;
 
-            await _userService.Update(user);
+            await _userService.UpdateUserRefreshToken(user);
 
             return NoContent();
         }
