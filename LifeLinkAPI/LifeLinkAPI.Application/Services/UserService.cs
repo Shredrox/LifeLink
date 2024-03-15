@@ -7,14 +7,10 @@ namespace LifeLinkAPI.Application.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        private readonly IPatientRepository _patientRepository;
 
-        public UserService(
-            IUserRepository userRepository, 
-            IPatientRepository patientRepository)
+        public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
-            _patientRepository = patientRepository;
         }
 
         public async Task<User?> GetUserById(string id)
