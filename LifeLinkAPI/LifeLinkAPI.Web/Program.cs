@@ -4,6 +4,7 @@ using System.Text;
 using LifeLinkAPI.Application;
 using LifeLinkAPI.Infrastructure;
 using LifeLinkAPI.Infrastructure.Hubs;
+using LifeLinkAPI.Middlewares;
 
 namespace LifeLinkAPI
 {
@@ -87,6 +88,8 @@ namespace LifeLinkAPI
 
             app.UseAuthorization();
 
+            app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
+            
             app.MapControllers();
             
             app.MapHub<ChatHub>("/chat");
