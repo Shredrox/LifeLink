@@ -1,4 +1,6 @@
-﻿using LifeLinkAPI.Application.DTOs.Requests;
+﻿using LifeLinkAPI.Application.DTOs;
+using LifeLinkAPI.Application.DTOs.Requests;
+using LifeLinkAPI.Application.DTOs.Responses;
 using LifeLinkAPI.Application.Interfaces.IRepositories;
 using LifeLinkAPI.Application.Interfaces.IServices;
 using LifeLinkAPI.Domain.Exceptions;
@@ -17,6 +19,16 @@ public class LabTestService : ILabTestService
     {
         _labTestRepository = labTestRepository;
         _medicalRecordRepository = medicalRecordRepository;
+    }
+
+    public async Task<LabTestResponseDto> GetLabTestsByMedicalRecordId(int medicalRecordId)
+    {
+        var labTests = await _labTestRepository.GetLabTestsByMedicalRecordId(medicalRecordId);
+
+        return new LabTestResponseDto(labTests
+            .Select(l => new LabTestDto(l.Name, l.Result, l.Cost))
+            .ToList()
+        );
     }
 
     public async Task AddLabTest(AddLabTestRequestDto request, int medicalRecordId)
