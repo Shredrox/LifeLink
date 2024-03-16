@@ -7,4 +7,5 @@ public interface ILabTestService
 {
     Task<LabTestResponseDto> GetLabTestsByMedicalRecordId(int medicalRecordId);
     Task AddLabTest(AddLabTestRequestDto request, int medicalRecordId);
+    Task AddLabTestResult(AddLabTestResultRequestDto request, int labTestId);
 }
