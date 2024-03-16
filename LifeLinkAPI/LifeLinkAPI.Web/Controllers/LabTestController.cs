@@ -41,7 +41,7 @@ namespace LifeLinkAPI.Controllers
         }
         
         [Authorize(Roles = "Doctor")]
-        [HttpPost]
+        [HttpPost("add-result")]
         public async Task<IActionResult> AddLabTestResult([FromBody] AddLabTestResultRequestDto request, [FromQuery] int labTestId)
         {
             try
