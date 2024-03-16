@@ -14,6 +14,11 @@ public class LabTestRepository : ILabTestRepository
         _context = context;
     }
 
+    public async Task<LabTest?> GetLabTestById(int id)
+    {
+        return await _context.LabTests.FindAsync(id);
+    }
+
     public async Task<IEnumerable<LabTest>> GetLabTestsByMedicalRecordId(int medicalRecordId)
     {
         return await _context.LabTests
@@ -24,6 +29,12 @@ public class LabTestRepository : ILabTestRepository
     public async Task InsertLabTest(LabTest labTest)
     {
         _context.LabTests.Add(labTest);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateLabTest(LabTest labTest)
+    {
+        _context.Entry(labTest).State = EntityState.Modified;
         await _context.SaveChangesAsync();
     }
 }
