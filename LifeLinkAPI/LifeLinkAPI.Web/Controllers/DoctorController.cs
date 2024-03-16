@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LifeLinkAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DoctorController : ControllerBase

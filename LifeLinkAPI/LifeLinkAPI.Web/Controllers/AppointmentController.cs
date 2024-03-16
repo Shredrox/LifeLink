@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LifeLinkAPI.Controllers
 {
-    [Authorize(Roles = "Patient, Doctor")]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AppointmentController : ControllerBase
@@ -16,7 +16,7 @@ namespace LifeLinkAPI.Controllers
         {
             _appointmentService = appointmentService;
         }
-
+        
         [HttpPost]
         public async Task<IActionResult> CreateAppointment([FromBody] BookAppointmentRequestDto request)
         {
