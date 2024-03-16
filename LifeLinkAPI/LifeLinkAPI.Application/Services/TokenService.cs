@@ -27,7 +27,8 @@ public class TokenService : ITokenService
         List<Claim> claims = new()
         {
             new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Role, user.Role.ToString())
+            new Claim(ClaimTypes.Role, user.Role.ToString()),
+            new Claim(ClaimTypes.Name, user.UserName)
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
@@ -47,20 +48,13 @@ public class TokenService : ITokenService
     
     public async Task<string> CreateRefreshToken(User user)
     {
-        try
-        {
-            var refreshToken = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
+        var refreshToken = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
 
-            user.RefreshToken = refreshToken;
-            user.RefreshTokenValidity = DateTime.Now.AddHours(2).ToUniversalTime(); 
+        user.RefreshToken = refreshToken;
+        user.RefreshTokenValidity = DateTime.Now.AddHours(2).ToUniversalTime(); 
 
-            await _userService.Update(user);
+        await _userService.UpdateUserRefreshToken(user);
 
-            return refreshToken;
-        }
-        catch (Exception e)
-        {
-            throw;
-        }
+        return refreshToken;
     }
 }

@@ -43,7 +43,7 @@ namespace LifeLinkAPI.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginRequestDto request)
+        public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
         {
             try
             {
@@ -116,7 +116,7 @@ namespace LifeLinkAPI.Controllers
             user.RefreshToken = null;
             user.RefreshTokenValidity = null;
 
-            await _userService.Update(user);
+            await _userService.UpdateUserRefreshToken(user);
 
             return NoContent();
         }

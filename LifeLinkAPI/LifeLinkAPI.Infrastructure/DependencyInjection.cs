@@ -2,6 +2,7 @@ using LifeLinkAPI.Application.Interfaces.IRepositories;
 using LifeLinkAPI.Domain.Models;
 using LifeLinkAPI.Infrastructure.Data;
 using LifeLinkAPI.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +31,8 @@ public static class DependencyInjection
         services.AddScoped<IMedicalRecordRepository, MedicalRecordRepository>();
         services.AddScoped<IDiagnosisRepository, DiagnosisRepository>();
         services.AddScoped<ILabTestRepository, LabTestRepository>();
+
+        services.AddSignalR();
         
         return services;
     }
