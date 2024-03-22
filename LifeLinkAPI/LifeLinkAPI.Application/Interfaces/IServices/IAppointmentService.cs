@@ -7,4 +7,6 @@ public interface IAppointmentService
 {
     Task<AppointmentHoursResponseDto> GetAllAppointmentHoursByDoctorAndDate(int doctorId, DateTime date);
     Task CreateAppointment(BookAppointmentRequestDto request);
+    Task UpdateAppointment(UpdateAppointmentRequestDto request);
+    Task DeleteAppointment(int appointmentId);
 }

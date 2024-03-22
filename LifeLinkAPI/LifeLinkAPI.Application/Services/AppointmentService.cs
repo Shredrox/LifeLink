@@ -3,6 +3,7 @@ using LifeLinkAPI.Application.DTOs.Requests;
 using LifeLinkAPI.Application.DTOs.Responses;
 using LifeLinkAPI.Application.Interfaces.IRepositories;
 using LifeLinkAPI.Application.Interfaces.IServices;
+using LifeLinkAPI.Domain.Exceptions;
 using LifeLinkAPI.Domain.Models;
 
 namespace LifeLinkAPI.Application.Services;
@@ -62,5 +63,24 @@ public class AppointmentService : IAppointmentService
         };
 
         await _appointmentRepository.InsertAppointment(appointment);
+    }
+
+    public async Task UpdateAppointment(UpdateAppointmentRequestDto request)
+    {
+        var appointment = await _appointmentRepository.GetAppointmentsById(request.AppointmentId);
+
+        if (appointment is null)
+        {
+            throw new AppointmentNotFountException();
+        }
+
+        appointment.Date = request.Date;
+
+        await _appointmentRepository.UpdateAppointment(appointment);
+    }
+
+    public async Task DeleteAppointment(int appointmentId)
+    {
+        await _appointmentRepository.DeleteAppointment(appointmentId);
     }
 }

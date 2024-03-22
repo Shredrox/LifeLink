@@ -17,6 +17,12 @@ namespace LifeLinkAPI.Controllers
             _appointmentService = appointmentService;
         }
         
+        [HttpGet("hours")]
+        public async Task<IActionResult> GetAppointmentHours([FromQuery] int doctorId, [FromQuery] DateTime date)
+        {
+            return Ok(await _appointmentService.GetAllAppointmentHoursByDoctorAndDate(doctorId, date));
+        }
+        
         [HttpPost]
         public async Task<IActionResult> CreateAppointment([FromBody] BookAppointmentRequestDto request)
         {
@@ -24,10 +30,18 @@ namespace LifeLinkAPI.Controllers
             return Ok("Appointment created");
         }
         
-        [HttpGet("hours")]
-        public async Task<IActionResult> GetAppointmentHours([FromQuery] int doctorId, [FromQuery] DateTime date)
+        [HttpPut]
+        public async Task<IActionResult> UpdateAppointment([FromBody] BookAppointmentRequestDto request)
         {
-            return Ok(await _appointmentService.GetAllAppointmentHoursByDoctorAndDate(doctorId, date));
+            await _appointmentService.CreateAppointment(request);
+            return Ok("Appointment created");
+        }
+        
+        [HttpDelete("{appointmentId:int}")]
+        public async Task<IActionResult> DeleteAppointment(int appointmentId)
+        {
+            await _appointmentService.DeleteAppointment(appointmentId);
+            return Ok("Appointment deleted");
         }
     }
 }
