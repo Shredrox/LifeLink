@@ -27,7 +27,7 @@ public class LabTestService : ILabTestService
         var labTests = await _labTestRepository.GetLabTestsByMedicalRecordId(medicalRecordId);
 
         return new LabTestResponseDto(labTests
-            .Select(l => new LabTestDto(l.Name, l.Result, l.Cost))
+            .Select(l => new LabTestDto(l.Name, l.ResultStatus.ToString(), l.Result, l.Cost))
             .ToList()
         );
     }
@@ -44,6 +44,7 @@ public class LabTestService : ILabTestService
         {
             Name = request.Name,
             ResultStatus = LabTestResultStatus.Pending,
+            Result = "",
             Cost = request.Cost,
             MedicalRecord = medicalRecord
         };

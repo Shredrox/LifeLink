@@ -47,7 +47,7 @@ namespace LifeLinkAPI.Controllers
             try
             {
                 await _labTestService.AddLabTestResult(request, labTestId);
-                return Ok("Lab test created");
+                return Ok("Lab test result added");
             }
             catch (LabTestNotFoundException e)
             {
