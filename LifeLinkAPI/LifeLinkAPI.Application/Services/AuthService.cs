@@ -70,22 +70,14 @@ namespace LifeLinkAPI.Application.Services
         
         public async Task<User?> GetUserFromRefreshToken(string refreshToken)
         {
-            try
-            {
-                var user = await _userRepository.GetUserByRefreshToken(refreshToken);
+            var user = await _userRepository.GetUserByRefreshToken(refreshToken);
 
-                if (user is null)
-                {
-                    return null;
-                }
-
-                return await _userRepository.GetUserById(user.Id);
-                
-            }
-            catch (Exception e)
+            if (user is null)
             {
-                throw;
+                return null;
             }
+
+            return await _userRepository.GetUserById(user.Id);
         }
     }
 }
