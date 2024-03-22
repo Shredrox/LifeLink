@@ -2,5 +2,6 @@
 
 public record LabTestDto(
     string Name,
-    string? Result,
+    string ResultStatus,
+    string Result,
     string Cost);
