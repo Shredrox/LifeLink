@@ -32,6 +32,8 @@ public static class DependencyInjection
         services.AddScoped<IDiagnosisRepository, DiagnosisRepository>();
         services.AddScoped<ILabTestRepository, LabTestRepository>();
         services.AddScoped<IPaymentRepository, PaymentRepository>();
+        services.AddScoped<IChatRepository, ChatRepository>();
+        services.AddScoped<IMessageRepository, MessageRepository>();
 
         services.AddSignalR();
         

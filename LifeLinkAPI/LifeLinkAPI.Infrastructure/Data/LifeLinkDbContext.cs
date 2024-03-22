@@ -24,5 +24,7 @@ namespace LifeLinkAPI.Infrastructure.Data
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<AppointmentHour> AppointmentHours { get; set; }
+        public DbSet<Chat> Chats { get; set; }
+        public DbSet<Message> Messages { get; set; }
     }
 }

@@ -1,27 +1,14 @@
-﻿using LifeLinkAPI.Application.Interfaces.IHubs;
+﻿using LifeLinkAPI.Application.Interfaces.IClients;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
 namespace LifeLinkAPI.Infrastructure.Hubs;
 
 [Authorize]
-public class ChatHub : Hub, IChatHub
+public class ChatHub : Hub<IChatClient>
 {
-    public override Task OnConnectedAsync()
+    public override async Task OnConnectedAsync()
     {
-        var username = Context.User.Identity.Name;
-        
-        Groups.AddToGroupAsync(Context.ConnectionId, username);
-        return base.OnConnectedAsync();
+        await Groups.AddToGroupAsync(Context.ConnectionId, Context.User.Identity.Name);
     }
-
-    public async Task SendMessage(string user, string message)
-    {
-        await Clients.All.SendAsync("ReceiveMessage", user, message);
-    }
-    
-    public async Task SendMessageToGroup(string sender, string receiver, string message)
-    {
-        await Clients.Group(receiver).SendAsync("ReceivePrivateMessage", sender, message);
-    } 
 }
