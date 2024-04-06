@@ -1,12 +1,9 @@
-import Donate from '../components/Donate'
-
 const About = () => {
   return (
-    <main>
+    <section>
       About Page
-      <Donate />
-    </main>
-  )
+    </section>
+  );
 }
 
-export default About
+export default About;
