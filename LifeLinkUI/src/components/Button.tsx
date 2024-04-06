@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
 
-interface Props {
+interface ButtonProps {
   content: string;
   style: string;
   path?: string;
 }
 
-const Button:React.FC<Props> = ({content, style, path = '#'}) => {
+const Button = ({content, style, path = '#'}: ButtonProps) => {
   return (
-    <button className={style}>
-      <Link to={path}>{content}</Link>
+    <button>
+      <Link className={style} to={path}>{content}</Link>
     </button>
-  )
+  );
 }
 
-export default Button
+export default Button;
